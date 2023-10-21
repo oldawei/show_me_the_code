@@ -69,7 +69,7 @@ https://space.bilibili.com/243180540
 | 005  |         RTC 实时时钟         | code\s005 | 2023-10-11 |
 | 006  |        CFI NOR Flash         | code\s006 | 2023-10-14 |
 | 007  |       virtio 基础知识        | code\s007 | 2023-10-17 |
-|      |                              |           |            |
+| 008  |       virtio-mmio 介绍       | code\s008 | 2023-10-21 |
 |      |                              |           |            |
 |      |                              |           |            |
 |      |                              |           |            |
