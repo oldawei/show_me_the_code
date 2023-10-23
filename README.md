@@ -70,7 +70,7 @@ https://space.bilibili.com/243180540
 | 006  |        CFI NOR Flash         | code\s006 | 2023-10-14 |
 | 007  |       virtio 基础知识        | code\s007 | 2023-10-17 |
 | 008  |       virtio-mmio 介绍       | code\s008 | 2023-10-21 |
-|      |                              |           |            |
+| 009  |       virtio-rng 设备        | code\s009 | 2023-10-23 |
 |      |                              |           |            |
 |      |                              |           |            |
 |      |                              |           |            |
