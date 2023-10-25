@@ -72,7 +72,7 @@ https://space.bilibili.com/243180540
 | 008  |       virtio-mmio 介绍       | code\s008 | 2023-10-21 |
 | 009  |       virtio-rng 设备        | code\s009 | 2023-10-23 |
 | 010  |       virtio-blk 设备        | code\s010 | 2023-10-24 |
-|      |                              |           |            |
+| 011  |     tap 虚拟网卡驱动安装     | code\s011 | 2023-10-25 |
 |      |                              |           |            |
 |      |                              |           |            |
 |      |                              |           |            |
