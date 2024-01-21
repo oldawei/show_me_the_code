@@ -85,7 +85,7 @@ https://space.bilibili.com/243180540
 | 021  |      PCIe(5) virtio-net驱动       | code\s021 | 2023-12-09 |
 | 022  |        PCIe(6) MSI中断介绍        | code\s022 | 2023-12-17 |
 | 023  |         PCIe(7) MSI-X中断         | code\s023 | 2023-12-24 |
-|      |                                   |           |            |
+| 024  |   PCIe(8) virtio-net msi-x 驱动   | code\s024 | 2024-01-20 |
 |      |                                   |           |            |
 |      |                                   |           |            |
 |      |                                   |           |            |
