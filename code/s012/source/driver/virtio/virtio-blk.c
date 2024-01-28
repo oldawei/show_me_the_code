@@ -97,19 +97,14 @@ int virtio_blk_init(u32 base)
     status |= VIRTIO_STAT_DRIVER_OK;
     virtio_mmio_set_status(status);
 
-    virtio_blk_cfg();
+    virtio_blk_cfg(base + VIRTIO_MMIO_CONFIG);
     plic_enable(VIRTIO1_IRQ);
     return 0;
 }
 
-void virtio_blk_cfg(void)
+void virtio_blk_cfg(u32 cfg_addr)
 {
-    u32 pt[(sizeof(struct virtio_blk_cfg) + 3)/4] = { 0 };
-    struct virtio_blk_cfg *cfg = (struct virtio_blk_cfg *)pt;
-
-    for (int i = 0; i < sizeof(cfg)/4; ++i) {
-        pt[i] = virtio_mmio_read_reg(VIRTIO_MMIO_CONFIG + 4*i);
-    }
+    struct virtio_blk_cfg *cfg = (struct virtio_blk_cfg *)cfg_addr;
 
     gs_virtio_blk.capacity = cfg->capacity;
     printf("capacity: %lld\n", cfg->capacity);

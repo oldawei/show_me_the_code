@@ -106,7 +106,7 @@ struct virtio_net {
 };
 
 int virtio_net_init(u32 base);
-void virtio_net_cfg(void);
+void virtio_net_cfg(u32 cfg_addr);
 int virtio_net_tx(u8 *buf, int buf_len);
 int virtio_net_rx(u8 *buf);
 int virtio_net_intr(void);

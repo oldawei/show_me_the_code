@@ -133,12 +133,7 @@ int virtio_pci_net_init(void)
 
 void virtio_pci_net_cfg(void)
 {
-    u32 pt[(sizeof(struct virtio_net_config) + 3)/4] = { 0 };
-    struct virtio_net_config *cfg = (struct virtio_net_config *)pt;
-
-    for (int i = 0; i < sizeof(cfg)/4; ++i) {
-        pt[i] = virtio_pci_get_config(&gs_virtio_net_hw, 4*i, 4);
-    }
+    struct virtio_net_config *cfg = (struct virtio_net_config *)gs_virtio_net_hw.device_cfg;
 
     printf("mac: %02x:%02x:%02x:%02x:%02x:%02x\n", cfg->mac[0], cfg->mac[1], cfg->mac[2],
             cfg->mac[3], cfg->mac[4], cfg->mac[5]);

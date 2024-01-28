@@ -5,7 +5,7 @@
 #include "virtio-rng.h"
 #include "printf/printf.h"
 
-static u8 gs_blk_buf[3*4096] __attribute__((aligned(4096))) = { 0 };
+static u8 gs_rng_buf[3*4096] __attribute__((aligned(4096))) = { 0 };
 static struct virtio_rng gs_virtio_rng = { 0 };
 
 int virtio_rng_init(u32 base)
@@ -74,7 +74,7 @@ int virtio_rng_init(u32 base)
     printf("queue_0 max size: %d\n", max);
     gs_virtio_rng.qsize = max;
 
-    int r = virtio_vring_init(&gs_virtio_rng.vr, gs_blk_buf, sizeof(gs_blk_buf), qsize);
+    int r = virtio_vring_init(&gs_virtio_rng.vr, gs_rng_buf, sizeof(gs_rng_buf), qsize);
     if (r) {
         printf("virtio_vring_init failed: %d\n", r);
         return r;

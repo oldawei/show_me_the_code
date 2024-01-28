@@ -115,12 +115,7 @@ int virtio_pci_blk_init(void)
 
 void virtio_pci_blk_cfg(void)
 {
-    u32 pt[(sizeof(struct virtio_blk_cfg) + 3)/4] = { 0 };
-    struct virtio_blk_cfg *cfg = (struct virtio_blk_cfg *)pt;
-
-    for (int i = 0; i < sizeof(cfg)/4; ++i) {
-        pt[i] = virtio_pci_get_config(&gs_virtio_blk_hw, 4*i, 4);
-    }
+    struct virtio_blk_cfg *cfg = (struct virtio_blk_cfg *)gs_virtio_blk_hw.device_cfg;
 
     gs_virtio_blk.capacity = cfg->capacity;
     printf("capacity: %lld\n", cfg->capacity);

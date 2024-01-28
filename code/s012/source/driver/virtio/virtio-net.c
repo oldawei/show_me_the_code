@@ -117,19 +117,14 @@ int virtio_net_init(u32 base)
     status |= VIRTIO_STAT_DRIVER_OK;
     virtio_mmio_set_status(status);
 
-    virtio_net_cfg();
+    virtio_net_cfg(base + VIRTIO_MMIO_CONFIG);
     plic_enable(VIRTIO2_IRQ);
     return 0;
 }
 
-void virtio_net_cfg(void)
+void virtio_net_cfg(u32 cfg_addr)
 {
-    u32 pt[(sizeof(struct virtio_net_config) + 3)/4] = { 0 };
-    struct virtio_net_config *cfg = (struct virtio_net_config *)pt;
-
-    for (int i = 0; i < sizeof(cfg)/4; ++i) {
-        pt[i] = virtio_mmio_read_reg(VIRTIO_MMIO_CONFIG + 4*i);
-    }
+    struct virtio_net_config *cfg = (struct virtio_net_config *)cfg_addr;
 
     printf("mac: %02x:%02x:%02x:%02x:%02x:%02x\n", cfg->mac[0], cfg->mac[1], cfg->mac[2],
             cfg->mac[3], cfg->mac[4], cfg->mac[5]);

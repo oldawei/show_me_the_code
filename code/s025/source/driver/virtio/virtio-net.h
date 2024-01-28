@@ -51,7 +51,7 @@ struct virtio_net_config {
 	u8 rss_max_key_size;
 	u16 rss_max_indirection_table_length;
 	u32 supported_hash_types;
-} __attribute__ ((packed));
+} __attribute__((packed));
 
 struct virtio_net_rxpkt {
 #define VIRTIO_NET_HDR_F_NEEDS_CSUM 1
@@ -106,7 +106,7 @@ struct virtio_net {
 };
 
 int virtio_net_init(u32 base);
-void virtio_net_cfg(void);
+void virtio_net_cfg(u32 cfg_addr);
 int virtio_net_tx(u8 *buf, int buf_len);
 int virtio_net_rx(u8 *buf);
 int virtio_net_intr(void);

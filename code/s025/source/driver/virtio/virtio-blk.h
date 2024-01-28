@@ -84,7 +84,7 @@ struct blk_buf {
 };
 
 int virtio_blk_init(u32 base);
-void virtio_blk_cfg(void);
+void virtio_blk_cfg(u32 cfg_addr);
 void virtio_blk_rw(struct blk_buf *b);
 void virtio_blk_intr(void);
 
