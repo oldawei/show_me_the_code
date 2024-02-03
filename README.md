@@ -87,7 +87,7 @@ https://space.bilibili.com/243180540
 | 023  |            PCIe(7) MSI-X中断             | code\s023 | 2023-12-24 |
 | 024  |      PCIe(8) virtio-net msi-x 驱动       | code\s024 | 2024-01-20 |
 | 025  | PCIe(8) virtio-blk/virtio-rng msi-x 驱动 | code\s025 | 2024-01-27 |
-|      |                                          |           |            |
+| 026  |  FreeRTOS(1) qemu risc-v virt 平台移植   | code\s026 | 2024-02-03 |
 |      |                                          |           |            |
 |      |                                          |           |            |
 |      |                                          |           |            |
