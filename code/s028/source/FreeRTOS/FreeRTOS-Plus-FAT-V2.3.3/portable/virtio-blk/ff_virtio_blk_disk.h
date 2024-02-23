@@ -1,0 +1,52 @@
+/*
+ * FreeRTOS+FAT V2.3.3
+ * Copyright (C) 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ * the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * https://www.FreeRTOS.org
+ * https://github.com/FreeRTOS
+ *
+ */
+
+#ifndef __VIRTIODISK_H__
+
+    #define __VIRTIODISK_H__
+
+    #ifdef __cplusplus
+    extern "C" {
+    #endif
+
+    #include "ff_headers.h"
+
+/* Create a RAM disk, supplying enough memory to hold N sectors of 512 bytes each */
+    FF_Disk_t * FF_VirtioDiskInit( char * pcName,
+                                uint32_t ulSectorCount,
+                                size_t xIOManagerCacheSize );
+
+/* Release all resources */
+    BaseType_t FF_VirtioDiskDelete( FF_Disk_t * pxDisk );
+
+/* Show some partition information */
+    BaseType_t FF_VirtioDiskShowPartition( FF_Disk_t * pxDisk );
+
+    #ifdef __cplusplus
+}         /* extern "C" */
+    #endif
+
+#endif /* __VIRTIODISK_H__ */

@@ -88,6 +88,15 @@ https://space.bilibili.com/243180540
 | 024  |      PCIe(8) virtio-net msi-x 驱动       | code\s024 | 2024-01-20 |
 | 025  | PCIe(8) virtio-blk/virtio-rng msi-x 驱动 | code\s025 | 2024-01-27 |
 | 026  |  FreeRTOS(1) qemu risc-v virt 平台移植   | code\s026 | 2024-02-03 |
+| 027  |           FreeRTOS(2) CLI接口            | code\s027 | 2024-02-04 |
+| 028  |         FreeRTOS(3) Fat文件系统          | code\s028 | 2024-02-07 |
+|      |                                          |           |            |
+|      |                                          |           |            |
+|      |                                          |           |            |
+|      |                                          |           |            |
+|      |                                          |           |            |
+|      |                                          |           |            |
+|      |                                          |           |            |
 |      |                                          |           |            |
 |      |                                          |           |            |
 |      |                                          |           |            |
