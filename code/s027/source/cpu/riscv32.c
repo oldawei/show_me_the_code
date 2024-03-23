@@ -47,6 +47,7 @@ u32 handle_trap(u32 mcause, u32 mepc)
         printf("exception:\n");
         printf("mcause: 0x%08x\n", mcause);
         printf("mepc: 0x%08x\n", mepc);
+		while(1);
     }
 
 	//printf("mret");
