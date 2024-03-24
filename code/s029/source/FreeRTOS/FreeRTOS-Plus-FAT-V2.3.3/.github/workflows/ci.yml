@@ -1,0 +1,105 @@
+name: CI Checks
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+  workflow_dispatch:
+
+jobs:
+  # Currently no unit tests
+  formatting:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check Formatting of Files
+        uses: FreeRTOS/CI-CD-Github-Actions/formatting@main
+
+  spell-check:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Clone This Repo
+          uses: actions/checkout@v3
+        - name: Run spellings check
+          uses: FreeRTOS/CI-CD-Github-Actions/spellings@main
+
+  link-verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone This Repo
+        uses: actions/checkout@v3
+      - name: Link Verification
+        uses: FreeRTOS/CI-CD-Github-Actions/link-verifier@main
+
+  # doxygen:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Run doxygen build
+  #       uses: FreeRTOS/CI-CD-Github-Actions/doxygen@main
+  #       with:
+  #         path: ./
+
+  build-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: |
+          sudo apt install build-essential cmake ninja-build
+      - name: Build checks (Default configuration)
+        run: |
+          cmake -E env CFLAGS="-DffconfigFAT12_SUPPORT=1" \
+          cmake -S . -B build -DFREERTOS_PLUS_FAT_TEST_CONFIGURATION=DEFAULT_CONF -GNinja
+          cmake --build build --target freertos_plus_fat_build_test
+
+  # complexity:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Setup
+  #       run: sudo apt-get install complexity
+  #     - name: Install Uncrustify
+  #       run: sudo apt-get install uncrustify
+  #     - name: Complexity
+  #       run: |
+  #         COMPLEXITY_PARAMS="--scores --threshold=10 --horrid-threshold=283"
+  #         TEMP_DIR=./temp
+  #         mkdir -p ${TEMP_DIR}
+  #         for SOURCE_FILE in source/portable/BufferManagement/*.c source/*.c
+  #         do
+  #             TARGET_DIR=${TEMP_DIR}/`dirname ${SOURCE_FILE}`
+  #             TARGET_FILE=${TARGET_DIR}/`basename ${SOURCE_FILE}`
+  #             mkdir -p ${TARGET_DIR}
+  #             uncrustify -c tools/uncrustify.complexity.cfg -f ${SOURCE_FILE} > ${TARGET_FILE}
+  #         done
+  #         find ${TEMP_DIR} -iname '*.c' | xargs complexity ${COMPLEXITY_PARAMS}
+  #         RESULT=$?
+  #         rm -rf ${TEMP_DIR}
+  #         if [ "${RESULT}" = "0" ]; then
+  #             echo "All is good."
+  #             exit 0
+  #         else
+  #             echo "Sources are too complex, rc = " ${RESULT}
+  #             exit 1
+  #         fi
+
+  git-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Checkout awslabs/git-secrets
+        uses: actions/checkout@v3
+        with:
+          repository: awslabs/git-secrets
+          ref: master
+          path: git-secrets
+      - name: Install git-secrets
+        run: cd git-secrets && sudo make install && cd ..
+      - name: Run git-secrets
+        run: |
+          git-secrets --register-aws
+          git-secrets --scan
