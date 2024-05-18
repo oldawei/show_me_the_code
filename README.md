@@ -91,7 +91,7 @@ https://space.bilibili.com/243180540
 | 027  |           FreeRTOS(2) CLI接口            | code\s027 | 2024-02-04 |
 | 028  |         FreeRTOS(3) Fat文件系统          | code\s028 | 2024-02-07 |
 | 029  |         FreeRTOS(4) TCP/IP协议栈         | code\s029 | 2024-03-23 |
-|      |                                          |           |            |
+| 030  |        FreeRTOS(5) FTP/HTTP服务器        | code\s030 | 2024-03-30 |
 |      |                                          |           |            |
 |      |                                          |           |            |
 |      |                                          |           |            |
