@@ -93,7 +93,7 @@ https://space.bilibili.com/243180540
 | 029  |         FreeRTOS(4) TCP/IP协议栈         | code\s029 | 2024-03-23 |
 | 030  |        FreeRTOS(5) FTP/HTTP服务器        | code\s030 | 2024-03-30 |
 | 031  |           FreeRTOS(6) UDP组播            | code\s031 | 2024-09-21 |
-|      |                                          |           |            |
+| 032  |           FreeRTOS(7) LTS更新            | code\s032 | 2024-09-28 |
 |      |                                          |           |            |
 |      |                                          |           |            |
 |      |                                          |           |            |
