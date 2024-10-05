@@ -94,7 +94,7 @@ https://space.bilibili.com/243180540
 | 030  |        FreeRTOS(5) FTP/HTTP服务器        | code\s030 | 2024-03-30 |
 | 031  |           FreeRTOS(6) UDP组播            | code\s031 | 2024-09-21 |
 | 032  |           FreeRTOS(7) LTS更新            | code\s032 | 2024-09-28 |
-|      |                                          |           |            |
+| 033  |          估算 qemu risc-v 主频           | code\s033 | 2024-10-03 |
 |      |                                          |           |            |
 |      |                                          |           |            |
 |      |                                          |           |            |
