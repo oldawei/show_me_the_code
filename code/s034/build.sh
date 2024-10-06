@@ -9,10 +9,10 @@ if [ ! -f ./source/readme.txt ];then
     cp -r ../s032/include ./
     cp -r ../s032/source ./
     cp -r ../s032/qemu.lds ./
-    cp -r ../s032/Makefile ./
+    # cp -r ../s032/Makefile ./
 fi
 
-cp -r ./source033/* ./source/
+cp -r ./source034/* ./source/
 
 if [ $# -eq 1 ]; then
     echo "make $1"
@@ -26,7 +26,7 @@ if [ $# -eq 1 ]; then
     if [ $1 == 'clean' ]; then
         echo "clean files..."
         rm -rf ./qemu.lds
-        rm -rf ./Makefile
+        # rm -rf ./Makefile
         rm -rf ./include
         rm -rf ./source
     fi
