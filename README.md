@@ -96,7 +96,7 @@ https://space.bilibili.com/243180540
 | 032  |           FreeRTOS(7) LTS更新            | code\s032 | 2024-09-28 |
 | 033  |          估算 qemu risc-v 主频           | code\s033 | 2024-10-03 |
 | 034  |              程序控制 qemu               | code\s034 | 2024-10-06 |
-|      |                                          |           |            |
+| 035  |         FreeRTOS(8) NTP时间同步          | code\s035 | 2024-10-13 |
 |      |                                          |           |            |
 |      |                                          |           |            |
 |      |                                          |           |            |
