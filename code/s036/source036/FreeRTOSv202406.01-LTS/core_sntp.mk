@@ -1,0 +1,8 @@
+CORE_SNTP_DIR = $(SOURCE_DIR)/FreeRTOSv202406.01-LTS/coreSNTP
+
+CORE_SNTP_FLAG = -I$(CORE_SNTP_DIR)/source/include
+
+CORE_SNTP_C_SRCS = $(wildcard $(CORE_SNTP_DIR)/source/*.c)
+
+SRCS += $(CORE_SNTP_C_SRCS)
+CFLAGS += $(CORE_SNTP_FLAG)
