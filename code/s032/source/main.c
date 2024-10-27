@@ -30,6 +30,14 @@ u32 version1 = BUILD_DATE1;
 u32 version2 = BUILD_DATE2;
 char *hello = "Hello, qemu and risc-v!";
 
+void qemu_assert(int expr)
+{
+	if (!expr) {
+		printf("assert...\n");
+		while(1);
+	}
+}
+
 void delay(int sec)
 {
 	u64 tic = goldfish_rtc_read_time_sec();

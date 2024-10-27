@@ -568,7 +568,10 @@
 
                         if( ( *pcPtr >= '0' ) && ( *pcPtr <= '9' ) )
                         {
-                            sscanf( pcPtr, "%lu", &pxClient->ulRestartOffset );
+                            char *get_dec_1(const char *cmd, u32 *v1);
+                            // sscanf( pcPtr, "%lu", &pxClient->ulRestartOffset );
+                            get_dec_1( pcPtr, (u32 *)&pxClient->ulRestartOffset );
+                            FreeRTOS_printf( ("ulRestartOffset: %lu", pxClient->ulRestartOffset) );
                             snprintf( pcCOMMAND_BUFFER, sizeof( pcCOMMAND_BUFFER ),
                                       "350 Restarting at %lu. Send STORE or RETRIEVE\r\n", pxClient->ulRestartOffset );
                             pcMyReply = pcCOMMAND_BUFFER;
@@ -1391,16 +1394,20 @@
     {
 /*_HT_ Using 'unsigned' here because when sscanf() sees '%u', it expects a pointer to 'unsigned'.
  * Not sure about the sscanf() format for UBaseType_t ? */
-        unsigned h1, h2, h3, h4, p1, p2;
-        char sep;
+        unsigned h1=0, h2=0, h3=0, h4=0, p1=0, p2=0;
+        // char sep;
         UBaseType_t uxResult;
 
+        char *get_dec_6(const char *cmd, u32 *v1, u32 *v2, u32 *v3, u32 *v4, u32 *v5, u32 *v6);
+        get_dec_6( pcCommand, &h1, &h2, &h3, &h4, &p1, &p2 );
+        FreeRTOS_printf( ("PORT %lu, %lu, %lu, %lu, %lu, %lu\n", h1, h2, h3, h4, p1, p2) );
+
         /* Expect PORT h1,h2,h3,h4,p1,p2 */
-        if( sscanf( pcCommand, "%u%c%u%c%u%c%u%c%u%c%u", &h1, &sep, &h2, &sep, &h3, &sep, &h4, &sep, &p1, &sep, &p2 ) != 11 )
-        {
-            uxResult = 0u;
-        }
-        else
+        // if( sscanf( pcCommand, "%u%c%u%c%u%c%u%c%u%c%u", &h1, &sep, &h2, &sep, &h3, &sep, &h4, &sep, &p1, &sep, &p2 ) != 11 )
+        // {
+        //     uxResult = 0u;
+        // }
+        // else
         {
             /* Put in network byte order. */
             *pulIPAddress =
