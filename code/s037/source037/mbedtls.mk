@@ -1,0 +1,13 @@
+# mbedtls-3.6.2
+MBEDTLS_DIR = $(SOURCE_DIR)/mbedtls-3.6.2
+MBEDTLS_FLAG = -I$(MBEDTLS_DIR)/include -I$(MBEDTLS_DIR)/library
+MBEDTLS_C_SRCS += $(wildcard $(MBEDTLS_DIR)/library/*.c)
+SRCS += $(MBEDTLS_C_SRCS)
+CFLAGS += $(MBEDTLS_FLAG)
+
+# mbedtls-virt-port
+MBEDTLS_VIRT_DIR = $(SOURCE_DIR)/qemu-virt-port/mbedtls
+MBEDTLS_VIRT_FLAG = -I$(MBEDTLS_VIRT_DIR)
+MBEDTLS_VIRT_C_SRCS += $(wildcard $(MBEDTLS_VIRT_DIR)/*.c)
+SRCS += $(MBEDTLS_VIRT_C_SRCS)
+CFLAGS += $(MBEDTLS_VIRT_FLAG)

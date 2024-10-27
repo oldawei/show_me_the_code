@@ -98,7 +98,7 @@ https://space.bilibili.com/243180540
 | 034  |              程序控制 qemu               | code\s034 | 2024-10-06 |
 | 035  |         FreeRTOS(8) NTP时间同步          | code\s035 | 2024-10-13 |
 | 036  |         FreeRTOS(9) 移植coreSNTP         | code\s036 | 2024-10-19 |
-|      |                                          |           |            |
+| 037  |         FreeRTOS(10) corePKCS11          | code\s037 | 2024-10-27 |
 |      |                                          |           |            |
 |      |                                          |           |            |
 |      |                                          |           |            |
