@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "printf/printf.h"
 #include "FreeRTOS.h"
 #include "task.h"
@@ -46,6 +47,8 @@ static BaseType_t prvTaskStatsCommand( char *pcWriteBuffer, size_t xWriteBufferL
 #if( configGENERATE_RUN_TIME_STATS == 1 )
 static BaseType_t prvRunTimeStatsCommand( char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString )
 {
+    printf("Total ticks: %u\n", (u32)goldfish_rtc_read_ticks());
+
     const char * const pcHeader = "  Abs Time      % Time\r\n****************************************\r\n";
     BaseType_t xSpacePadding;
 
@@ -103,6 +106,50 @@ static BaseType_t prvQueryHeapCommand( char *pcWriteBuffer, size_t xWriteBufferL
 #endif /* configINCLUDE_QUERY_HEAP */
 /*-----------------------------------------------------------*/
 
+char *get_dec_1(const char *cmd, u32 *v1)
+{
+    char *endp;
+    *v1 = (u32)strtoul(cmd, &endp, 10);
+
+    return endp;
+}
+
+char *get_dec_6(const char *cmd, u32 *v1, u32 *v2, u32 *v3, u32 *v4, u32 *v5, u32 *v6)
+{
+    char *endp;
+    *v1 = (u32)strtoul(cmd, &endp, 10);
+    if (*v1)
+        *v2 = (u32)strtoul(endp + 1, &endp, 10);
+    if (*v2)
+        *v3 = (u32)strtoul(endp + 1, &endp, 10);
+    if (*v3)
+        *v4 = (u32)strtoul(endp + 1, &endp, 10);
+    if (*v4)
+        *v5 = (u32)strtoul(endp + 1, &endp, 10);
+    if (*v5)
+    *v6 = (u32)strtoul(endp + 1, &endp, 10);
+
+    return endp;
+}
+
+char *get_hex_1(const char *cmd, u32 *v1)
+{
+    char *endp;
+    *v1 = (u32)strtoul(cmd, &endp, 16);
+
+    return endp;
+}
+
+char *get_hex_2(const char *cmd, u32 *v1, u32 *v2)
+{
+    char *endp;
+
+    *v1 = (u32)strtoul(cmd, &endp, 16);
+    *v2 = (u32)strtoul(endp + 1, &endp, 16);
+
+    return endp;
+}
+
 static BaseType_t prvMemReadCommand( char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString )
 {
     (void)xWriteBufferLen;
@@ -122,7 +169,8 @@ static BaseType_t prvMemReadCommand( char *pcWriteBuffer, size_t xWriteBufferLen
 
     u32 addr = 0;
     u32 num = 0;
-    sscanf(pcParameter1, "%x %x", &addr, &num);
+    // sscanf(pcParameter1, "%x %x", &addr, &num);
+    get_hex_2(pcParameter1, &addr, &num);
 
     *pcWriteBuffer = 0x00;
     printf("Addr\t\t\tVaule\r\n");
@@ -156,7 +204,8 @@ static BaseType_t prvMemWriteCommand( char *pcWriteBuffer, size_t xWriteBufferLe
 
     u32 addr = 0;
     u32 value = 0;
-    sscanf(pcParameter1, "%x %x", &addr, &value);
+    // sscanf(pcParameter1, "%x %x", &addr, &value);
+    get_hex_2(pcParameter1, &addr, &value);
 
     *pcWriteBuffer = 0x00;
     u32 *pt = (u32 *)addr;
@@ -329,7 +378,7 @@ void cli_init(void)
     FreeRTOS_CLIRegisterCommand( &xMemWrite );
 
     xStreamBuffer = xStreamBufferCreate( 64, 1 );
-    xTaskCreate(vCommandConsoleTask, (portCHAR *)"CliTask", 512, NULL, 30, NULL);
+    xTaskCreate(vCommandConsoleTask, (portCHAR *)"CliTask", 512, NULL, 10, NULL);
 }
 
 void cli_putchar(u8 c)

@@ -43,6 +43,10 @@ CFLAGS += -fno-builtin-printf -DPRINTF_INCLUDE_CONFIG_H=1 -DD_CLOCK_RATE=1000000
 CFLAGS += -DBUILD_DATE1=$(BUILD_DATE1) -DBUILD_DATE2=0x$(BUILD_DATE2)
 CFLAGS += -Iinclude -Isource/cpu -Isource/driver -Isource/library -Isource/platform
 CFLAGS += -Isource/driver/virtio
+CFLAGS += -Dsprintf=sprintf_ -Dsnprintf=snprintf_
+CFLAGS += -Dvsprintf=vsprintf_ -Dvsnprintf=vsnprintf_
+CFLAGS += -Dvprintf=vprintf_
+CFLAGS += -Dassert=qemu_assert -D__assert_func=qemu_assert
 
 LDFLAGS = -nostartfiles -ffunction-sections -fdata-sections -Tqemu.lds ${ABI} \
 	-Wl,-Map,${BIN_NAME}.map -Wl,--gc-sections
